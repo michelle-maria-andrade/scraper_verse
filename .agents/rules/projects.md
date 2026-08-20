@@ -42,6 +42,66 @@ regional distributor).
                               │ webhook post │  │ heal + re-verify  │
                               └──────────────┘  └──────────────────┘
 ```
+## Schema
+
+- monitors
+
+  1. id — a unique number for the monitor.
+  2. name — human-readable label for display UI display.
+  3. collector_id — the Bright Data Collector ID to trigger scrapes via the API 
+  4. target_url — the URL being scraped.
+  5. status — current state: 'healthy', 'healing', or 'broken'. 
+  6. schedule — human-readable text like "hourly" for UI display thats taken from cron timing on Github Actions.
+  7. created_at — timestamp of when the monitor was first added
+
+- runs
+
+  1. id — unique number per run.
+  2. monitor_id — which monitor this run belongs to. (FK)
+  3. snapshot_id — for polling the data collection.
+  4. status — 'pending' (still waiting on Bright Data), 'success', or 'failed'. Defaults to 'pending' because when a run starts, it hasn't finished yet.
+  5. data — the actual scraped JSON result 
+  6. error_message — only filled in if status = 'failed'. Explains what went wrong.
+  7. duration_ms — how long the run took, in milliseconds for UI.
+  8. ran_at — timestamp of when the run happened.
+
+- events
+
+  1. id — unique number per event.
+  2. monitor_id — logs monitor id for event.
+  3. run_id — optional link to the specific run that revealed this event (e.g. "run #3 is the one that showed the break"). Can be NULL if there's no specific run tied to it.
+  4. type — one of 'break', 'heal', 'approve', or 'diff' for the UI.
+  5. message — the human-readable description, e.g. "discount_price returning null on ~80% of rows".
+  6. created_at — timestamp of when the event happened. 
+
+- products
+
+  1. id — unique number per product.
+  2. monitor_id — which monitor this product belongs to. (FK)
+  3. product_url — the product's page URL. Combined with monitor_id, uniquely identifies one product — never duplicated, always overwritten.
+  4. product_name — display name of the product.
+  5. sku — product SKU/code, if the site has one.
+  6. list_price — the original (non-discounted) price.
+  7. discount_price — the current discounted price, if any.
+  8. discount_pct — the discount percentage.
+  9. in_stock — whether the product is currently in stock.
+  10. updated_at — timestamp of the last time this row was refreshed with new scraped values. 
+
+- product_snapshots
+
+  1. id — unique number per snapshot.
+  2. monitor_id — which monitor this snapshot belongs to. (FK)
+  3. run_id — which run produced this snapshot. (FK, required — every snapshot comes from exactly one run)
+  4. product_url — the product's page URL.
+  5. product_name, sku, list_price, discount_price, discount_pct, in_stock — but this is a frozen copy at the time of a specific run, never overwritten.
+  6. scraped_at — timestamp of when this snapshot was taken. 
+  
+- ci_checks
+
+  1. id — unique number per check.
+  2. monitor_id — which monitor this CI run was checking.
+  3. status — 'pass' or 'fail'. This is literally what colors each square in the green/red check wall.
+  4. created_at — timestamp, used to order the checks left-to-right in the wall.
 
 ## Components
 
