@@ -93,7 +93,7 @@ regional distributor).
   2. monitor_id — which monitor this snapshot belongs to. (FK)
   3. run_id — which run produced this snapshot. (FK, required — every snapshot comes from exactly one run)
   4. product_url — the product's page URL.
-  5. product_name, sku, list_price, discount_price, discount_pct, in_stock — but this is a frozen copy at the time of a specific run, never overwritten.
+  5. product_name, sku, list_price, discount_price, discount_pct, in_stock — this is a frozen copy at the time of a specific run, never overwritten.
   6. scraped_at — timestamp of when this snapshot was taken. 
   
 - ci_checks
