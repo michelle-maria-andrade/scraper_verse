@@ -1,0 +1,32 @@
+[
+  {
+    "product_url": "https://indianrobostore.com/product/male-dupont-electrical-terminal-plug-reed-connector-254mm-5-pins",
+    "product_name": "Male Dupont Electrical Terminal Plug Reed Connector 2.54mm-5 Pins",
+    "sku": "2401250015",
+    "list_price": 39.0,
+    "discount_price": 29.0,
+    "discount_pct": 25.64,
+    "in_stock": true,
+    "scraped_at": "2026-08-20T10:00:00Z"
+  },
+  {
+    "product_url": "https://indianrobostore.com/product/3k-carbon-fiber-sheet-1000mm1200mm1mm",
+    "product_name": "3K Carbon Fiber Sheet 1000mm x 1200mm x 1mm",
+    "sku": "CF-1000-1200",
+    "list_price": 3999.0,
+    "discount_price": 3499.0,
+    "discount_pct": 12.5,
+    "in_stock": true,
+    "scraped_at": "2026-08-20T10:00:00Z"
+  },
+  {
+    "product_url": "https://indianrobostore.com/product/hobbywing-skywalker-60a-brushless-esc-speed-controller-for-drone",
+    "product_name": "Hobbywing Skywalker 60A Brushless ESC Speed Controller",
+    "sku": "HW-SKY-60A",
+    "list_price": 1899.0,
+    "discount_price": 1499.0,
+    "discount_pct": 21.06,
+    "in_stock": true,
+    "scraped_at": "2026-08-20T10:00:00Z"
+  }
+]

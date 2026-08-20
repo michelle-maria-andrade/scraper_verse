@@ -1,5 +1,12 @@
-
 node_modules/
-.venv
-.venv.*
+.venv/
+.venv.*/
 example_trial/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+data/*.db
+data/*.db-wal
+data/*.db-shm
+create_result.json

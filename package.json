@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@brightdata/cli": "^0.3.5"
+  }
+}
